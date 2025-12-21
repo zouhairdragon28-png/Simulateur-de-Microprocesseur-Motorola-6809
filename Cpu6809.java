@@ -1,5 +1,4 @@
-         
-package projetM6809;
+        package projetM6809;
 
 public class Cpu6809 {
     private Memory memory;
@@ -115,3 +114,4 @@ public class Cpu6809 {
     public int getX() { return X; } public int getY() { return Y; }
     public int getA() { return A; } public int getB() { return B; }
     public int getDP() { return DP; } public int getCC() { return CC; }
+}
