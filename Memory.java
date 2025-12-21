@@ -1,4 +1,4 @@
- package projetM6809;
+  package projetM6809;
 
 public class Memory {
     // La mémoire contient 65536 octets (64 Ko)
@@ -28,5 +28,5 @@ public class Memory {
 
     public void write(int address, int value) {
         data[address & 0xFFFF] = (byte) value;
-    
-
+    }
+}
