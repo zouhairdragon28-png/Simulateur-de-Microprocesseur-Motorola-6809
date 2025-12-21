@@ -1,4 +1,4 @@
-        package projetM6809;
+package projetM6809;
 
 public class Cpu6809 {
     private Memory memory;
@@ -32,8 +32,7 @@ public class Cpu6809 {
         PC++;
 
         switch(opcode) {
-            // --- 8 BITS (IMMEDIATE) ---
-            // دابا كيكتب ليك الرقم مع التعليمة
+            // --- 8 BITS (IMMEDIATE) --  
             case 0x86: A = memory.read(PC++); updateFlags(A); 
                        currentInstructionStr = String.format("LDA #$%02X", A); break;
             case 0xC6: B = memory.read(PC++); updateFlags(B); 
@@ -115,3 +114,4 @@ public class Cpu6809 {
     public int getA() { return A; } public int getB() { return B; }
     public int getDP() { return DP; } public int getCC() { return CC; }
 }
+
