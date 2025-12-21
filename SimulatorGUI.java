@@ -83,13 +83,11 @@ public class SimulatorGUI extends JFrame {
                 String mnemo = parts[0];
                 String operandStr = (parts.length > 1) ? parts[1] : "";
 
-                // --- VALIDATION STRICTE ---
-                // يمنع الرموز المقلوبة أو المتداخلة
+                // --- VALIDATION STRICTE -- 
                 if (operandStr.contains("$#") || operandStr.contains("#<") || operandStr.contains("#,")) {
                     JOptionPane.showMessageDialog(this, "Erreur syntaxe (Ligne "+lineNum+") : Symboles invalides '" + operandStr + "'");
                     return; // Stop tout
                 }
-
                 // Détection type opérande
                 boolean isImm = operandStr.startsWith("#");
                 boolean isDir = operandStr.startsWith("<");
@@ -288,3 +286,4 @@ public class SimulatorGUI extends JFrame {
         }
     }
 }  
+
