@@ -1,4 +1,6 @@
-package projetM6809;
+              
+     
+ package projetM6809;
 
 public class Cpu6809 {
     private Memory memory;
@@ -60,14 +62,6 @@ public class Cpu6809 {
             case 0xD7: int sB=(DP<<8)|memory.read(PC++); memory.write(sB,B); updateFlags(B); 
                        currentInstructionStr=String.format("STB <$%02X", sB&0xFF); break;
 
-            // --- BRANCH ---
-            case 0x20: byte off = (byte)memory.read(PC++); PC += off; 
-                       currentInstructionStr = String.format("BRA $%02X", off); break;
-            case 0x26: byte offne = (byte)memory.read(PC++); if((CC & 0x04) == 0) PC += offne; 
-                       currentInstructionStr = String.format("BNE $%02X", offne); break;
-            case 0x27: byte offeq = (byte)memory.read(PC++); if((CC & 0x04) != 0) PC += offeq; 
-                       currentInstructionStr = String.format("BEQ $%02X", offeq); break;
-
             // --- ARITHMETIC ---
             case 0x8B: int vA=memory.read(PC++); A=(A+vA)&0xFF; updateFlags(A); 
                        currentInstructionStr=String.format("ADDA #$%02X", vA); break;
@@ -85,9 +79,7 @@ public class Cpu6809 {
             // --- SPECIALS ---
             case 0x1E: int p1=memory.read(PC++); if(p1==0x8B){int t=A;A=DP;DP=t;currentInstructionStr="EXG A,DP";} break;
             case 0x1F: int p2=memory.read(PC++); if(p2==0x8B){DP=A;currentInstructionStr="TFR A,DP";} break;
-            case 0x34: memory.read(PC++); S-=2; currentInstructionStr="PSHS"; break;
-            case 0x35: memory.read(PC++); S+=2; currentInstructionStr="PULS"; break;
-            case 0x7E: int tg = read16(); PC = tg; currentInstructionStr=String.format("JMP $%04X", tg); break;
+         
             
             // --- STOP ---
             case 0x3F: 
@@ -114,4 +106,3 @@ public class Cpu6809 {
     public int getA() { return A; } public int getB() { return B; }
     public int getDP() { return DP; } public int getCC() { return CC; }
 }
-
